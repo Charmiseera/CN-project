@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Routing Algorithms Visualizer</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Vis.js Network -->
+    <script type="text/javascript" src="https://unpkg.com/vis-network/standalone/umd/vis-network.min.js"></script>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar Controls -->
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="fa-solid fa-network-wired"></i>
+                <h1>NetViz</h1>
+            </div>
+
+            <div class="control-group">
+                <h3><i class="fa-solid fa-pen-to-square"></i> Edit Graph</h3>
+                <div class="button-grid">
+                    <button id="add-node-mode" class="btn secondary active" title="Click on canvas to add node">
+                        <i class="fa-solid fa-circle-plus"></i> Add Node
+                    </button>
+                    <button id="add-edge-mode" class="btn secondary" title="Drag from one node to another">
+                        <i class="fa-solid fa-draw-polygon"></i> Add Edge
+                    </button>
+                    <button id="manual-input-btn" class="btn secondary" style="grid-column: span 2;"
+                        title="Enter nodes and edges manually">
+                        <i class="fa-solid fa-keyboard"></i> Input Graph Data
+                    </button>
+                </div>
+                <button id="clear-graph" class="btn outline full-width">Clear Canvas</button>
+            </div>
+
+            <div class="control-group">
+                <h3><i class="fa-solid fa-sliders"></i> Algorithms</h3>
+                <div class="select-wrapper">
+                    <select id="algorithm-select">
+                        <option value="dijkstra">Dijkstra's Algorithm</option>
+                        <option value="bellman">Bellman-Ford Algorithm</option>
+                        <!-- LS is conceptually similar to Dijkstra for single source, but we can visualize the flooding if needed. 
+                             For now, mapping LS -> Dijkstra mechanics for SPT. 
+                             DV -> Distributed update step. -->
+                        <option value="link-state">Link State (LS)</option>
+                        <option value="distance-vector">Distance Vector (DV)</option>
+                    </select>
+                </div>
+
+                <div class="input-group">
+                    <label for="start-node">Start Node</label>
+                    <input type="text" id="start-node" placeholder="e.g. 1">
+                </div>
+
+                <div class="speed-control">
+                    <label>Anim. Speed</label>
+                    <input type="range" id="speed-range" min="1" max="100" value="50">
+                </div>
+
+                <button id="run-algo" class="btn primary full-width">
+                    <i class="fa-solid fa-play"></i> Run Visualizer
+                </button>
+                <div id="algo-status" class="status-text"></div>
+            </div>
+
+            <div class="control-group description-box">
+                <h3>Info</h3>
+                <p id="algo-description">Select an algorithm to see how it works.</p>
+            </div>
+        </aside>
+
+        <!-- Main Visualization Area -->
+        <main class="main-content">
+            <div id="network-container"></div>
+
+            <!-- Result/Log Panel -->
+            <div id="logs-panel" class="logs-panel">
+                <div class="logs-header">
+                    <h3><i class="fa-solid fa-terminal"></i> Execution Logs & Routing Table</h3>
+                    <button id="toggle-logs"><i class="fa-solid fa-chevron-down"></i></button>
+                </div>
+                <div id="logs-content" class="logs-content"></div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Input Modal -->
+    <div id="input-modal" class="modal-overlay hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-keyboard"></i> Input Graph Data</h2>
+                <button id="close-modal" class="close-btn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <label>Number of Nodes</label>
+                    <input type="number" id="node-count-input" min="2" max="20" placeholder="e.g. 5">
+                </div>
+                <div class="input-group">
+                    <label>Edges (Format: Source Destination Weight)</label>
+                    <textarea id="edge-input-area" rows="6" placeholder="Example:
+1 2 5
+1 3 2
+2 4 1"></textarea>
+                    <small>Enter one edge per line. Space separated.</small>
+                </div>
+                <div class="modal-actions">
+                    <button id="generate-graph-btn" class="btn primary">Generate Graph</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/graph-manager.js"></script>
+    <script src="js/algorithms.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>

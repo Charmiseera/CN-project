@@ -1,0 +1,421 @@
+:root {
+    --bg-dark: #0f172a;
+    --bg-panel: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --primary-color: #6366f1;
+    /* Indigo */
+    --primary-hover: #4f46e5;
+    --secondary-color: #334155;
+    --secondary-hover: #475569;
+    --accent-color: #0ea5e9;
+    /* Sky */
+    --danger-color: #ef4444;
+    --success-color: #22c55e;
+    --border-color: #334155;
+    --glass-bg: rgba(30, 41, 59, 0.7);
+    --glass-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-primary);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 320px;
+    background-color: var(--bg-panel);
+    border-right: 1px solid var(--border-color);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    z-index: 10;
+    box-shadow: 4px 0 24px rgba(0, 0, 0, 0.3);
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.brand h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #6366f1, #0ea5e9);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.brand i {
+    font-size: 1.5rem;
+}
+
+.control-group h3 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Buttons */
+.button-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.btn {
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn.primary {
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-hover));
+    color: white;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.btn.primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.5);
+}
+
+.btn.secondary {
+    background-color: var(--secondary-color);
+    color: var(--text-primary);
+}
+
+.btn.secondary:hover,
+.btn.secondary.active {
+    background-color: var(--secondary-hover);
+    color: white;
+}
+
+.btn.secondary.active {
+    border: 1px solid var(--primary-color);
+    background-color: rgba(99, 102, 241, 0.2);
+}
+
+.btn.danger {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: var(--danger-color);
+    grid-column: span 2;
+}
+
+.btn.danger:hover,
+.btn.danger.active {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.btn.outline {
+    background: transparent;
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+}
+
+.btn.outline:hover {
+    border-color: var(--text-primary);
+    color: var(--text-primary);
+}
+
+.full-width {
+    width: 100%;
+}
+
+/* Form Elements */
+.select-wrapper select,
+.input-group input {
+    width: 100%;
+    padding: 0.7rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    outline: none;
+    font-family: inherit;
+    margin-bottom: 0.5rem;
+}
+
+.select-wrapper select:focus,
+.input-group input:focus {
+    border-color: var(--primary-color);
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.3rem;
+}
+
+.speed-control {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.speed-control input {
+    flex: 1;
+    cursor: pointer;
+}
+
+.description-box p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--text-secondary);
+}
+
+.status-text {
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    text-align: center;
+    color: var(--accent-color);
+    min-height: 1.2em;
+}
+
+/* Main Content */
+.main-content {
+    flex: 1;
+    position: relative;
+    background-image: radial-gradient(rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+}
+
+#network-container {
+    width: 100%;
+    height: 100%;
+    outline: none;
+}
+
+/* Logs Panel */
+.logs-panel {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border-top: 1px solid var(--glass-border);
+    max-height: 35%;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+}
+
+.logs-header {
+    padding: 0.75rem 1.5rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logs-header h3 {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.logs-header button {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.logs-content {
+    padding: 1rem 1.5rem;
+    overflow-y: auto;
+    font-family: 'Consolas', 'Monaco', monospace;
+    font-size: 0.9rem;
+    color: #e2e8f0;
+}
+
+/* Table Styling for Logs */
+.log-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.5rem;
+}
+
+.log-table th,
+.log-table td {
+    text-align: left;
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.log-table th {
+    color: var(--accent-color);
+    font-weight: 600;
+}
+
+.log-entry {
+    margin-bottom: 4px;
+    border-left: 3px solid var(--border-color);
+    padding-left: 8px;
+}
+
+.log-entry.highlight {
+    border-left-color: var(--accent-color);
+    background: rgba(14, 165, 233, 0.1);
+}
+
+.log-entry.error {
+    border-left-color: var(--danger-color);
+    color: #fca5a5;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--secondary-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--secondary-hover);
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background-color: var(--bg-panel);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.hidden .modal-content {
+    transform: translateY(20px);
+}
+
+.modal-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-header h2 {
+    font-size: 1.1rem;
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.close-btn:hover {
+    color: var(--text-primary);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-body .input-group textarea {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-family: 'Consolas', monospace;
+    resize: vertical;
+}
+
+.modal-body .input-group textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.modal-actions {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: flex-end;
+}
